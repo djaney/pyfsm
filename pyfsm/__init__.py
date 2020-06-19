@@ -9,6 +9,10 @@ class StackFsm(object):
     def pop_state(self):
         self.__state.pop()
 
+    def switch_state(self, state):
+        self.pop_state()
+        self.push_state(state)
+
     def update(self):
         if len(self.__state) > 0:
             self.__iterations += 1

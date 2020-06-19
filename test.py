@@ -1,5 +1,6 @@
-from fsm import StackFsm
+from pyfsm import StackFsm
 from unittest import TestCase
+
 
 class EatWhenHungry(StackFsm):
     hunger = 1
@@ -10,14 +11,12 @@ class EatWhenHungry(StackFsm):
     def hungry(self):
         self.hunger += 1
         if self.hunger >= 1:
-            self.pop_state()
-            self.push_state(self.full)
+            self.switch_state(self.full)
 
     def full(self):
         self.hunger -= 1
         if self.hunger < 1:
-            self.pop_state()
-            self.push_state(self.hungry)
+            self.switch_state(self.hungry)
 
 
 class StackFsmTestCase(TestCase):
